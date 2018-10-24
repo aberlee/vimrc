@@ -14,15 +14,21 @@
 " ------------------------------------------------------------------------------
 autocmd!
 
+" restore history position
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal! g'\"" | endif
+endif
+
 set nocompatible                " no need to remain compatible
 let mapleader = ','             " change map leader
 set wrapscan                    " wrap around when searching ?
 set ch=2                        " make command-line two lines high
-set nu                          " show line numbers
+"set nu                          " show line numbers
 set mousehide                   " hide the mouse
 set scrolloff=4                 " keep the cursor four lines off the edge
 set foldmethod=marker           " use markers for folds
-set nohls                       " don't highlight searches
+set hlsearch                    " highlight searches
 set hl+=sr                      " invert status bar
 set hl+=Sr                      " invert other status bars
 set backspace=indent,eol,start  " backspace over everything in insert mode
@@ -37,18 +43,17 @@ set noshowmode                  " don't show the mode in insert, visual, etc.
 "set incsearch                   " set incremental search
 set tags+=./tags                " include local tags
 
-"set history=1000
+set history=1000
 "set cindent
 "set smarttab
 "set ruler
-set hls
 
 set pastetoggle=<F9>
 "set tags=tags;
 "set autochdir
 
 " status line
-set stl=%f\ (%Y)\ Line\ %l/%L\ -\ Column\ %c\ %w%h%r
+" set stl=%f\ (%Y)\ Line\ %l/%L\ -\ Column\ %c\ %w%h%r
 
 filetype on                      " filetype plugin
 filetype plugin indent on        " switch it on
@@ -203,4 +208,12 @@ if has("gui_running")
     endif
 endif
 
- 
+"------------------------------------------------------------------------------
+"                           Multi Type
+"------------------------------------------------------------------------------
+if has("multi_byte")
+	set fileencodings=utf-8,ucs-bom,cp936,cp1250,big5,euc-jp,euc-kr,latin1
+else
+	echoerr "Sorry, this version of (g)vim was not compiled with multi_byte"
+endif
+
