@@ -45,12 +45,16 @@ set tags+=./tags                " include local tags
 
 set history=1000
 "set cindent
-"set smarttab
+set smarttab
 "set ruler
+set expandtab
 
 set pastetoggle=<F9>
-"set tags=tags;
+set tags=tags;
 "set autochdir
+set cscopetag
+
+colors desert
 
 " status line
 " set stl=%f\ (%Y)\ Line\ %l/%L\ -\ Column\ %c\ %w%h%r
@@ -67,6 +71,16 @@ nmap <silent> <Leader>t :call Tag()<cr>
 function! Tag()
     ! ctags -R .
 endfunction
+
+" ------------------------------------------------------------------------------
+"                            vimdiff color
+" ------------------------------------------------------------------------------
+
+if &diff
+"    colors darkblue
+    colors pablo
+    highlight DiffChange term=bold ctermbg=4 ctermfg=8
+endif
 
 " ------------------------------------------------------------------------------
 "                             Windoze Compatability                            
@@ -159,6 +173,12 @@ if has("autocmd")
 
 	au filetype py setlocal autoindent
 	au filetype py setlocal expandtab
+
+	au filetype java setlocal autoindent
+	au filetype java setlocal expandtab
+
+	au filetype xml setlocal autoindent
+	au filetype xml setlocal expandtab
 endif
 
 " ------------------------------------------------------------------------------
@@ -198,14 +218,16 @@ endfunction
 " ------------------------------------------------------------------------------
 
 if has("gui_running")
-    colorscheme slate2
+    colorscheme darkblue
     set guioptions-=T
     set guioptions-=L
-    if has("gui_gtk2")
-        set guifont=Droid\ Sans\ Mono\ 8
-    else
-        set guifont=ProggyCleanTT:h12
-    endif
+	set guifont=Cascadia\ Code:h10
+	set lines=40 columns=120
+"    if has("gui_gtk2")
+"        set guifont=Droid\ Sans\ Mono\ 8
+"    else
+"        set guifont=ProggyCleanTT:h12
+"    endif
 endif
 
 "------------------------------------------------------------------------------
