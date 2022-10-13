@@ -24,7 +24,7 @@ set nocompatible                " no need to remain compatible
 let mapleader = ','             " change map leader
 set wrapscan                    " wrap around when searching ?
 set ch=2                        " make command-line two lines high
-"set nu                          " show line numbers
+set nu                          " show line numbers
 set mousehide                   " hide the mouse
 set scrolloff=4                 " keep the cursor four lines off the edge
 set foldmethod=marker           " use markers for folds
@@ -58,6 +58,11 @@ colors desert
 
 " status line
 " set stl=%f\ (%Y)\ Line\ %l/%L\ -\ Column\ %c\ %w%h%r
+
+set encoding=utf-8
+set fileencodings=ucs-bom,utf-8,cp936
+set fileencoding=gb2312
+set termencoding=utf-8
 
 filetype on                      " filetype plugin
 filetype plugin indent on        " switch it on
